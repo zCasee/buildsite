@@ -1,0 +1,485 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const tiers = [
+  {
+    name: "Lite",
+    price: "$299",
+    cadence: "/mo",
+    tagline: "A great website, fully managed.",
+    description:
+      "Get a custom 5-page website. We build it, deploy it, monitor it, and edit it for you every month. No CMS to learn, no theme to fight.",
+    features: [
+      "Up to 5 pages, custom-designed",
+      "Live in 14 days from kickoff",
+      "Hosting, SSL, domain setup included",
+      "Up to 4 content edits per month",
+      "Uptime + performance monitoring",
+      "Quarterly SEO + speed report",
+    ],
+    cta: "Start with Lite",
+    href: "#contact",
+    highlight: false,
+  },
+  {
+    name: "Pro",
+    price: "$799",
+    cadence: "/mo",
+    tagline: "A website that works for you.",
+    description:
+      "Everything in Lite, plus an AI assistant trained on your business. It answers prospect questions, qualifies leads, and books calls — all while you sleep.",
+    features: [
+      "Everything in Lite",
+      "AI assistant trained on your docs",
+      "Lead intake + qualification flow",
+      "AI-generated blog content (4 posts/mo)",
+      "Up to 8 content edits per month",
+      "Monthly performance report + call",
+    ],
+    cta: "Start with Pro",
+    href: "#contact",
+    highlight: true,
+  },
+  {
+    name: "Studio",
+    price: "$1,899",
+    cadence: "/mo",
+    tagline: "A custom tool, on tap.",
+    description:
+      "Everything in Pro, plus a custom integration or tool. CRM hookups, internal dashboards, automation. Dedicated dev hours every month.",
+    features: [
+      "Everything in Pro",
+      "One custom tool or integration",
+      "8 dedicated dev hours per month",
+      "Shared Slack / Discord channel",
+      "Quarterly strategy review",
+      "Priority response (≤ 4 hours)",
+    ],
+    cta: "Start with Studio",
+    href: "#contact",
+    highlight: false,
+  },
+];
+
+const faqs = [
+  {
+    q: "What if I already have a website?",
+    a: "We migrate it. The first build cycle gets your existing site rebuilt on our stack — usually faster, more accessible, and easier to edit. You keep your URL, your content, and your search rankings.",
+  },
+  {
+    q: "Who owns the code and the site?",
+    a: "You do. Every Buildsite project lives in a GitHub repo we transfer to you on day one. If you ever stop the subscription, you keep everything — the code, the hosting setup, the AI assistant config. No lock-in.",
+  },
+  {
+    q: "Can I cancel?",
+    a: "Yes. Six-month minimum to start (so we both have time to build something good), then month-to-month. Cancel any time after with 30 days notice. We hand over everything and part on good terms.",
+  },
+  {
+    q: "What counts as a content edit?",
+    a: "Anything that takes us under 30 minutes: new copy, swap an image, add a testimonial, update pricing, publish a blog post, fix a typo. Bigger work (new pages, new features, redesigns) is covered by the dev hours on Pro and Studio, or quoted separately.",
+  },
+  {
+    q: "How fast is &quot;live in 14 days&quot;?",
+    a: "From kickoff call to a deployed staging URL. We send you 3-5 design directions on day 3, you pick one, we build the rest. You'll be reviewing real pages by day 7. The 14-day promise assumes you give feedback within a business day at each step.",
+  },
+  {
+    q: "What's not included?",
+    a: "Branding (logo, color identity, brand voice) — we partner with designers for that. Copy that requires deep research into your industry — we'll write what we can from a discovery call, but a copywriter is sometimes the right call. Custom photography. Anything that needs to be FDA / HIPAA / SOC2 audited.",
+  },
+  {
+    q: "What if I need more than the included edits or features?",
+    a: "Out-of-scope work is quoted at $185/hr, or rolled into a tier upgrade. Most clients on Lite outgrow into Pro within 3-4 months once the AI assistant starts producing leads.",
+  },
+];
+---
+
+<BaseLayout>
+  <!-- ============================================================
+       NAV
+       Design guide §1.3 — typography does the work; logo is type.
+       ============================================================ -->
+  <header class="sticky top-0 z-50 border-b border-[var(--color-border)] bg-[var(--color-bg)]/85 backdrop-blur-md">
+    <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+      <a href="#" class="text-lg font-bold tracking-tight text-[var(--color-fg)]">
+        Buildsite<span class="text-[var(--color-accent)]">.</span>
+      </a>
+      <div class="flex items-center gap-6 text-sm text-[var(--color-fg-muted)]">
+        <a href="#pricing" class="hidden hover:text-[var(--color-fg)] sm:inline">Pricing</a>
+        <a href="#how" class="hidden hover:text-[var(--color-fg)] sm:inline">How it works</a>
+        <a href="#faq" class="hidden hover:text-[var(--color-fg)] sm:inline">FAQ</a>
+        <a
+          href="#contact"
+          class="rounded-md bg-[var(--color-accent)] px-4 py-2 text-sm font-medium text-[var(--color-accent-contrast)] transition hover:bg-[var(--color-accent-hover)]"
+        >
+          Book a call
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ============================================================
+       HERO
+       Design guide rule #1: outcome headline + mechanism subline +
+       ONE CTA + (optional) product preview. Nothing else.
+       Editorial Minimal — oversized type carries the weight.
+       ============================================================ -->
+  <section class="relative overflow-hidden">
+    <!-- Background grain / glow -->
+    <div class="pointer-events-none absolute inset-0 -z-10">
+      <div class="absolute -top-40 left-1/2 h-[600px] w-[1200px] -translate-x-1/2 rounded-full bg-[var(--color-accent)] opacity-[0.08] blur-3xl"></div>
+    </div>
+
+    <div class="mx-auto max-w-6xl px-6 pb-24 pt-24 sm:pt-32 lg:pt-40">
+      <p class="fade-up mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-1 text-xs text-[var(--color-fg-muted)]">
+        <span class="h-1.5 w-1.5 rounded-full bg-[var(--color-success)]"></span>
+        Now booking June 2026
+      </p>
+
+      <h1 class="fade-up mb-6 max-w-4xl text-5xl font-bold leading-[1.05] tracking-tight text-[var(--color-fg)] sm:text-6xl lg:text-7xl">
+        Your website. An AI assistant. One monthly fee. <span class="text-[var(--color-fg-muted)]">Forever.</span>
+      </h1>
+
+      <p class="fade-up-delay mb-10 max-w-2xl text-lg text-[var(--color-fg-muted)] sm:text-xl">
+        Buildsite is a productized website service for small businesses.
+        We build your site, train an AI assistant on your business, and keep both running — for the price of one part-time hire.
+      </p>
+
+      <div class="fade-up-delay-2 flex flex-col gap-3 sm:flex-row">
+        <a
+          href="#contact"
+          class="inline-flex items-center justify-center rounded-md bg-[var(--color-accent)] px-6 py-3 text-base font-medium text-[var(--color-accent-contrast)] transition hover:bg-[var(--color-accent-hover)]"
+        >
+          Book a 15-min discovery call →
+        </a>
+        <a
+          href="#pricing"
+          class="inline-flex items-center justify-center rounded-md border border-[var(--color-border-strong)] bg-transparent px-6 py-3 text-base font-medium text-[var(--color-fg)] transition hover:bg-[var(--color-surface)]"
+        >
+          See the tiers
+        </a>
+      </div>
+
+      <p class="fade-up-delay-2 mt-8 text-sm text-[var(--color-fg-dim)]">
+        From <span class="text-[var(--color-fg)]">$299/mo</span>. 14-day launch. 6-month minimum, then month-to-month.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PROBLEM
+       Naming the pain at the moment doubt peaks (design guide §3).
+       ============================================================ -->
+  <section class="border-t border-[var(--color-border)] bg-[var(--color-bg)] py-24">
+    <div class="mx-auto max-w-6xl px-6">
+      <p class="mb-3 text-sm font-medium uppercase tracking-wider text-[var(--color-accent)]">The current reality</p>
+      <h2 class="mb-12 max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl">
+        Your website is somewhere between an inconvenience and an active liability.
+      </h2>
+
+      <div class="grid gap-6 sm:grid-cols-3">
+        <div class="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6">
+          <div class="mb-4 text-3xl">🪦</div>
+          <h3 class="mb-2 text-lg font-semibold">It's stale.</h3>
+          <p class="text-sm text-[var(--color-fg-muted)]">
+            Last updated when? You don't even have the password to the CMS. The phone number's wrong. The "Latest News" is from 2023.
+          </p>
+        </div>
+        <div class="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6">
+          <div class="mb-4 text-3xl">🐌</div>
+          <h3 class="mb-2 text-lg font-semibold">It's slow.</h3>
+          <p class="text-sm text-[var(--color-fg-muted)]">
+            Hero image is 4 MB. Mobile takes 8 seconds to load. Google demoted you. The bounce rate is 71%. You don't know what bounce rate is.
+          </p>
+        </div>
+        <div class="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6">
+          <div class="mb-4 text-3xl">🎣</div>
+          <h3 class="mb-2 text-lg font-semibold">It doesn't fish.</h3>
+          <p class="text-sm text-[var(--color-fg-muted)]">
+            The contact form has 12 fields. Half the leads ghost. Of the ones who don't, you spend Monday morning replying with answers your website already kind of has.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SOLUTION
+       Mechanism — how Buildsite is structurally different.
+       ============================================================ -->
+  <section class="border-t border-[var(--color-border)] bg-[var(--color-surface)] py-24">
+    <div class="mx-auto max-w-6xl px-6">
+      <p class="mb-3 text-sm font-medium uppercase tracking-wider text-[var(--color-accent)]">What changes</p>
+      <h2 class="mb-12 max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl">
+        We take the website off your plate. <span class="text-[var(--color-fg-muted)]">Permanently.</span>
+      </h2>
+
+      <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
+        <div>
+          <h3 class="mb-3 text-xl font-semibold">A real website, not a template.</h3>
+          <p class="text-[var(--color-fg-muted)]">
+            Built with Astro and Tailwind on the same stack the best startups use. Loads in under a second on mobile. Accessible by default. Lighthouse 100 isn't a target, it's the baseline.
+          </p>
+        </div>
+        <div>
+          <h3 class="mb-3 text-xl font-semibold">An AI assistant that knows your business.</h3>
+          <p class="text-[var(--color-fg-muted)]">
+            We train a chatbot on your service docs, FAQs, pricing, and policies. It answers prospects 24/7, qualifies leads with the right next question, and books calls into your calendar. (Pro and Studio tiers.)
+          </p>
+        </div>
+        <div>
+          <h3 class="mb-3 text-xl font-semibold">A team you can actually reach.</h3>
+          <p class="text-[var(--color-fg-muted)]">
+            You email or Slack us. We make the change. Usually same day, always within two business days. No agency portal. No "we'll get to it Q3."
+          </p>
+        </div>
+        <div>
+          <h3 class="mb-3 text-xl font-semibold">No lock-in. Ever.</h3>
+          <p class="text-[var(--color-fg-muted)]">
+            Every project lives in a GitHub repo we transfer to you on day one. If you stop the subscription, you keep the code, the hosting, the AI config — everything.
+          </p>
+        </div>
+        <div>
+          <h3 class="mb-3 text-xl font-semibold">One predictable invoice.</h3>
+          <p class="text-[var(--color-fg-muted)]">
+            One monthly fee covers build, host, edits, AI features, and monitoring. No setup fee. No "design phase" upcharge. No surprise bill when something breaks at 11 PM.
+          </p>
+        </div>
+        <div>
+          <h3 class="mb-3 text-xl font-semibold">Real reporting.</h3>
+          <p class="text-[var(--color-fg-muted)]">
+            Monthly report on traffic, leads captured, AI conversations, and what the data says you should change next. We use Plausible (privacy-first) and Cloudflare Web Analytics.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       HOW IT WORKS
+       Numbered, calm, deliverable per step.
+       ============================================================ -->
+  <section id="how" class="border-t border-[var(--color-border)] bg-[var(--color-bg)] py-24">
+    <div class="mx-auto max-w-6xl px-6">
+      <p class="mb-3 text-sm font-medium uppercase tracking-wider text-[var(--color-accent)]">How it works</p>
+      <h2 class="mb-12 max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl">Three weeks from this page to a website your customers actually use.</h2>
+
+      <ol class="grid gap-8 md:grid-cols-3">
+        <li class="relative rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8">
+          <div class="absolute -top-4 left-8 flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-accent)] text-sm font-bold text-[var(--color-accent-contrast)]">1</div>
+          <h3 class="mb-3 text-lg font-semibold">Discovery call (15 min)</h3>
+          <p class="mb-4 text-sm text-[var(--color-fg-muted)]">
+            One short call. We ask what your business does, who buys from you, and what would change if your website actually worked. You leave knowing exactly which tier fits and what the first 14 days look like.
+          </p>
+          <p class="text-xs text-[var(--color-fg-dim)]">No prep, no slides.</p>
+        </li>
+
+        <li class="relative rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8">
+          <div class="absolute -top-4 left-8 flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-accent)] text-sm font-bold text-[var(--color-accent-contrast)]">2</div>
+          <h3 class="mb-3 text-lg font-semibold">Build (14 days)</h3>
+          <p class="mb-4 text-sm text-[var(--color-fg-muted)]">
+            Day 3: you pick a design direction from three options. Day 7: you're reviewing real pages on a staging URL. Day 10: the AI assistant answers test questions from your docs. Day 14: we launch.
+          </p>
+          <p class="text-xs text-[var(--color-fg-dim)]">You spend ~3 hours total.</p>
+        </li>
+
+        <li class="relative rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8">
+          <div class="absolute -top-4 left-8 flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-accent)] text-sm font-bold text-[var(--color-accent-contrast)]">3</div>
+          <h3 class="mb-3 text-lg font-semibold">Run (every month after)</h3>
+          <p class="mb-4 text-sm text-[var(--color-fg-muted)]">
+            You forget the website exists. We update copy, ship new pages, retrain the AI on new docs, monitor uptime, fix things before you notice. You read the monthly report and reply with what you want next.
+          </p>
+          <p class="text-xs text-[var(--color-fg-dim)]">Cancel anytime after month six.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PRICING
+       Three tiers. Middle one anchored. Per business-ops §1.
+       ============================================================ -->
+  <section id="pricing" class="border-t border-[var(--color-border)] bg-[var(--color-surface)] py-24">
+    <div class="mx-auto max-w-6xl px-6">
+      <p class="mb-3 text-sm font-medium uppercase tracking-wider text-[var(--color-accent)]">Pricing</p>
+      <h2 class="mb-4 max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl">Three tiers. No setup fees. No surprises.</h2>
+      <p class="mb-12 max-w-2xl text-[var(--color-fg-muted)]">
+        Most businesses start on <span class="text-[var(--color-fg)]">Pro</span> because the AI assistant pays for itself the first month it captures a lead you would have missed.
+      </p>
+
+      <div class="grid gap-6 lg:grid-cols-3">
+        {
+          tiers.map((tier) => (
+            <div
+              class={
+                tier.highlight
+                  ? "relative rounded-2xl border-2 border-[var(--color-accent)] bg-[var(--color-bg)] p-8 shadow-[0_0_40px_-12px_var(--color-accent)]"
+                  : "rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg)] p-8"
+              }
+            >
+              {tier.highlight && (
+                <span class="absolute -top-3 right-6 rounded-full bg-[var(--color-accent)] px-3 py-1 text-xs font-medium text-[var(--color-accent-contrast)]">
+                  Most pick this
+                </span>
+              )}
+              <h3 class="mb-1 text-2xl font-bold">{tier.name}</h3>
+              <p class="mb-6 text-sm text-[var(--color-fg-muted)]">{tier.tagline}</p>
+
+              <div class="mb-6 flex items-baseline gap-1">
+                <span class="text-5xl font-bold tracking-tight">{tier.price}</span>
+                <span class="text-[var(--color-fg-muted)]">{tier.cadence}</span>
+              </div>
+
+              <p class="mb-8 text-sm text-[var(--color-fg-muted)]">{tier.description}</p>
+
+              <ul class="mb-8 space-y-3 text-sm">
+                {tier.features.map((f) => (
+                  <li class="flex items-start gap-2">
+                    <span class="mt-0.5 flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-accent)]/15 text-[var(--color-accent)]">
+                      ✓
+                    </span>
+                    <span class="text-[var(--color-fg)]">{f}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <a
+                href={tier.href}
+                class={
+                  tier.highlight
+                    ? "inline-flex w-full items-center justify-center rounded-md bg-[var(--color-accent)] px-5 py-3 font-medium text-[var(--color-accent-contrast)] transition hover:bg-[var(--color-accent-hover)]"
+                    : "inline-flex w-full items-center justify-center rounded-md border border-[var(--color-border-strong)] px-5 py-3 font-medium text-[var(--color-fg)] transition hover:bg-[var(--color-surface-2)]"
+                }
+              >
+                {tier.cta}
+              </a>
+            </div>
+          ))
+        }
+      </div>
+
+      <p class="mt-12 text-center text-sm text-[var(--color-fg-muted)]">
+        Every tier: 6-month minimum, then month-to-month. You own the code and the URL. No lock-in.
+        <br />
+        Need something custom? <a href="#contact" class="text-[var(--color-accent)] hover:underline">Tell us what you have in mind →</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WHY US
+       Trust + technical credibility for the buyer who can tell.
+       ============================================================ -->
+  <section class="border-t border-[var(--color-border)] bg-[var(--color-bg)] py-24">
+    <div class="mx-auto max-w-6xl px-6">
+      <p class="mb-3 text-sm font-medium uppercase tracking-wider text-[var(--color-accent)]">Why Buildsite</p>
+      <h2 class="mb-12 max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl">
+        Built like 2026, not like 2014.
+      </h2>
+
+      <div class="grid gap-x-12 gap-y-10 sm:grid-cols-2">
+        <div>
+          <h3 class="mb-2 font-semibold">Modern stack, end to end.</h3>
+          <p class="text-sm text-[var(--color-fg-muted)]">
+            Astro 6 for the site. Tailwind v4 for the styling. Cloudflare Pages for hosting. Anthropic Claude for the AI assistant. The same tools the best teams in the world are using right now — applied to your business.
+          </p>
+        </div>
+        <div>
+          <h3 class="mb-2 font-semibold">AI inside, not bolted on.</h3>
+          <p class="text-sm text-[var(--color-fg-muted)]">
+            On Pro and Studio, the AI is the product, not a widget. It uses your real content via retrieval, cites its sources, hands off to a human when it should, and stays within the boundaries you set.
+          </p>
+        </div>
+        <div>
+          <h3 class="mb-2 font-semibold">Accessibility and SEO are not extras.</h3>
+          <p class="text-sm text-[var(--color-fg-muted)]">
+            We ship WCAG 2.2 AA, semantic HTML, structured data, sitemap, OG cards, and a Lighthouse 100 mobile score on every site. Because the law in Europe (EAA, June 2025) now says so, and because Google's been ranking on it for years.
+          </p>
+        </div>
+        <div>
+          <h3 class="mb-2 font-semibold">Privacy by default.</h3>
+          <p class="text-sm text-[var(--color-fg-muted)]">
+            No cookie banners. No Google Analytics. Cloudflare Web Analytics or Plausible — cookieless, GDPR-compliant, and 10× more honest about what's actually happening.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FAQ
+       Address every "but what about..." before the contact form.
+       ============================================================ -->
+  <section id="faq" class="border-t border-[var(--color-border)] bg-[var(--color-surface)] py-24">
+    <div class="mx-auto max-w-3xl px-6">
+      <p class="mb-3 text-sm font-medium uppercase tracking-wider text-[var(--color-accent)]">FAQ</p>
+      <h2 class="mb-12 text-3xl font-bold tracking-tight sm:text-4xl">The honest answers.</h2>
+
+      <dl class="space-y-2">
+        {
+          faqs.map((item, i) => (
+            <details
+              class="group rounded-xl border border-[var(--color-border)] bg-[var(--color-bg)] open:border-[var(--color-border-strong)]"
+              open={i === 0}
+            >
+              <summary class="flex cursor-pointer items-center justify-between gap-4 px-6 py-5 text-base font-medium text-[var(--color-fg)] [&::-webkit-details-marker]:hidden">
+                <span set:html={item.q} />
+                <span class="text-[var(--color-fg-muted)] transition group-open:rotate-45">+</span>
+              </summary>
+              <p class="px-6 pb-6 text-sm text-[var(--color-fg-muted)]" set:html={item.a} />
+            </details>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FINAL CTA
+       One ask. No second option here.
+       ============================================================ -->
+  <section id="contact" class="relative border-t border-[var(--color-border)] bg-[var(--color-bg)] py-32">
+    <div class="pointer-events-none absolute inset-0 -z-10">
+      <div class="absolute left-1/2 top-1/2 h-[400px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-accent)] opacity-[0.08] blur-3xl"></div>
+    </div>
+
+    <div class="mx-auto max-w-3xl px-6 text-center">
+      <h2 class="mb-6 text-4xl font-bold tracking-tight sm:text-5xl">
+        Ready to never think about your website again?
+      </h2>
+      <p class="mb-10 text-lg text-[var(--color-fg-muted)]">
+        15 minutes on a call. You leave knowing exactly what your site will look like, what it will cost, and when it will be live. No high-pressure sales. We pitch one tier and stop talking.
+      </p>
+      <a
+        href="mailto:hello@buildsite.dev?subject=Discovery%20call"
+        class="inline-flex items-center justify-center rounded-md bg-[var(--color-accent)] px-8 py-4 text-lg font-medium text-[var(--color-accent-contrast)] transition hover:bg-[var(--color-accent-hover)]"
+      >
+        Book a discovery call →
+      </a>
+      <p class="mt-6 text-sm text-[var(--color-fg-dim)]">
+        Or email <a href="mailto:hello@buildsite.dev" class="text-[var(--color-fg)] hover:text-[var(--color-accent)]">hello@buildsite.dev</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="border-t border-[var(--color-border)] bg-[var(--color-bg)] py-12">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
+        <div>
+          <p class="text-lg font-bold tracking-tight">
+            Buildsite<span class="text-[var(--color-accent)]">.</span>
+          </p>
+          <p class="mt-1 text-sm text-[var(--color-fg-dim)]">
+            Productized websites + AI assistants for small businesses.
+          </p>
+        </div>
+        <div class="flex flex-col items-start gap-2 text-sm text-[var(--color-fg-muted)] sm:items-end">
+          <a href="mailto:hello@buildsite.dev" class="hover:text-[var(--color-fg)]">hello@buildsite.dev</a>
+          <p class="text-xs text-[var(--color-fg-dim)]">© 2026 Buildsite. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+</BaseLayout>
