@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import { ClientRouter } from "astro:transitions";
 
 interface Props {
   title?: string;
@@ -43,6 +44,17 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
 
     <!-- Theme color (dark-first) -->
     <meta name="theme-color" content="#0a0a0f" />
+
+    <!-- Geist — Vercel's display font. Preconnect + variable font via Google Fonts. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap"
+    />
+
+    <!-- View transitions (Astro 5/6 ClientRouter — see playbook) -->
+    <ClientRouter />
 
     <!-- Structured data: Organization -->
     <script

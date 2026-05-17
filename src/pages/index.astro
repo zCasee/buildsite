@@ -109,7 +109,7 @@ const faqs = [
         <a href="#faq" class="hidden hover:text-[var(--color-fg)] sm:inline">FAQ</a>
         <a
           href="#contact"
-          class="rounded-md bg-[var(--color-accent)] px-4 py-2 text-sm font-medium text-[var(--color-accent-contrast)] transition hover:bg-[var(--color-accent-hover)]"
+          class="btn-primary rounded-md px-4 py-2 text-sm font-medium"
         >
           Book a call
         </a>
@@ -147,13 +147,13 @@ const faqs = [
       <div class="fade-up-delay-2 flex flex-col gap-3 sm:flex-row">
         <a
           href="#contact"
-          class="inline-flex items-center justify-center rounded-md bg-[var(--color-accent)] px-6 py-3 text-base font-medium text-[var(--color-accent-contrast)] transition hover:bg-[var(--color-accent-hover)]"
+          class="btn-primary inline-flex items-center justify-center rounded-md px-6 py-3 text-base font-medium"
         >
           Book a 15-min discovery call →
         </a>
         <a
           href="#pricing"
-          class="inline-flex items-center justify-center rounded-md border border-[var(--color-border-strong)] bg-transparent px-6 py-3 text-base font-medium text-[var(--color-fg)] transition hover:bg-[var(--color-surface)]"
+          class="btn-secondary inline-flex items-center justify-center rounded-md px-6 py-3 text-base font-medium"
         >
           See the tiers
         </a>
@@ -295,6 +295,76 @@ const faqs = [
   </section>
 
   <!-- ============================================================
+       COMPARISON
+       "Where does this sit between the alternatives?" — anchors pricing.
+       ============================================================ -->
+  <section class="border-t border-[var(--color-border)] bg-[var(--color-bg)] py-24">
+    <div class="mx-auto max-w-6xl px-6">
+      <p class="mb-3 text-sm font-medium uppercase tracking-wider text-[var(--color-accent)]">How we stack up</p>
+      <h2 class="mb-12 max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl">
+        Between "build it yourself" and "hire an agency."
+      </h2>
+
+      <div class="overflow-x-auto rounded-xl border border-[var(--color-border)]">
+        <table class="w-full text-left text-sm">
+          <thead class="border-b border-[var(--color-border)] bg-[var(--color-surface)]">
+            <tr>
+              <th class="px-6 py-4 font-medium text-[var(--color-fg-muted)]"></th>
+              <th class="px-6 py-4 font-medium text-[var(--color-fg-muted)]">Wix / Squarespace</th>
+              <th class="px-6 py-4 font-medium text-[var(--color-fg-muted)]">Hire an agency</th>
+              <th class="bg-[var(--color-accent)]/8 px-6 py-4 font-semibold text-[var(--color-fg)]">Buildsite</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-[var(--color-border)]">
+            <tr>
+              <td class="px-6 py-4 font-medium">Upfront cost</td>
+              <td class="px-6 py-4 text-[var(--color-fg-muted)]">$0–$50/mo</td>
+              <td class="px-6 py-4 text-[var(--color-fg-muted)]">$8k–$40k</td>
+              <td class="bg-[var(--color-accent)]/5 px-6 py-4 text-[var(--color-fg)]">$0 setup</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 font-medium">Time to launch</td>
+              <td class="px-6 py-4 text-[var(--color-fg-muted)]">Your weekends, indefinitely</td>
+              <td class="px-6 py-4 text-[var(--color-fg-muted)]">3–6 months</td>
+              <td class="bg-[var(--color-accent)]/5 px-6 py-4 text-[var(--color-fg)]">14 days</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 font-medium">Ongoing edits</td>
+              <td class="px-6 py-4 text-[var(--color-fg-muted)]">You do them</td>
+              <td class="px-6 py-4 text-[var(--color-fg-muted)]">Hourly invoices ($150–$250/hr)</td>
+              <td class="bg-[var(--color-accent)]/5 px-6 py-4 text-[var(--color-fg)]">Included monthly</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 font-medium">AI assistant</td>
+              <td class="px-6 py-4 text-[var(--color-fg-muted)]">Not really</td>
+              <td class="px-6 py-4 text-[var(--color-fg-muted)]">Custom build, $$$</td>
+              <td class="bg-[var(--color-accent)]/5 px-6 py-4 text-[var(--color-fg)]">Built in (Pro+)</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 font-medium">Performance</td>
+              <td class="px-6 py-4 text-[var(--color-fg-muted)]">Heavy templates, slow on mobile</td>
+              <td class="px-6 py-4 text-[var(--color-fg-muted)]">Depends on the agency</td>
+              <td class="bg-[var(--color-accent)]/5 px-6 py-4 text-[var(--color-fg)]">Lighthouse 100, every site</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 font-medium">Who owns it</td>
+              <td class="px-6 py-4 text-[var(--color-fg-muted)]">They do</td>
+              <td class="px-6 py-4 text-[var(--color-fg-muted)]">Usually them, you'd have to ask</td>
+              <td class="bg-[var(--color-accent)]/5 px-6 py-4 text-[var(--color-fg)]">You, from day one</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 font-medium">When something breaks</td>
+              <td class="px-6 py-4 text-[var(--color-fg-muted)]">Support ticket queue</td>
+              <td class="px-6 py-4 text-[var(--color-fg-muted)]">Email someone, hope they reply</td>
+              <td class="bg-[var(--color-accent)]/5 px-6 py-4 text-[var(--color-fg)]">We fix before you notice</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
        PRICING
        Three tiers. Middle one anchored. Per business-ops §1.
        ============================================================ -->
@@ -312,8 +382,8 @@ const faqs = [
             <div
               class={
                 tier.highlight
-                  ? "relative rounded-2xl border-2 border-[var(--color-accent)] bg-[var(--color-bg)] p-8 shadow-[0_0_40px_-12px_var(--color-accent)]"
-                  : "rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg)] p-8"
+                  ? "tier-card tier-highlight relative rounded-2xl border-2 border-[var(--color-accent)] bg-[var(--color-bg)] p-8 shadow-[0_0_40px_-12px_var(--color-accent)]"
+                  : "tier-card rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg)] p-8"
               }
             >
               {tier.highlight && (
@@ -362,6 +432,40 @@ const faqs = [
         <br />
         Need something custom? <a href="#contact" class="text-[var(--color-accent)] hover:underline">Tell us what you have in mind →</a>
       </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       OBJECTIONS
+       Address the legitimate skepticism. Doubt-peak moment after pricing.
+       ============================================================ -->
+  <section class="border-t border-[var(--color-border)] bg-[var(--color-bg)] py-24">
+    <div class="mx-auto max-w-6xl px-6">
+      <p class="mb-3 text-sm font-medium uppercase tracking-wider text-[var(--color-accent)]">What you're probably thinking</p>
+      <h2 class="mb-12 max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl">
+        Three fair concerns. Three direct answers.
+      </h2>
+
+      <div class="grid gap-8 lg:grid-cols-3">
+        <div class="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8">
+          <p class="mb-4 text-sm font-medium uppercase tracking-wider text-[var(--color-fg-dim)]">"Isn't this just AI slop?"</p>
+          <p class="text-[var(--color-fg)]">
+            <span class="text-[var(--color-accent)]">No.</span> AI is a tool we use during the build, the same way a carpenter uses a power saw. The output is reviewed, hand-tuned, and held to a standard you'd recognize from any high-end design studio. If a section reads like a chatbot wrote it, we cut it.
+          </p>
+        </div>
+        <div class="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8">
+          <p class="mb-4 text-sm font-medium uppercase tracking-wider text-[var(--color-fg-dim)]">"What if I want to leave?"</p>
+          <p class="text-[var(--color-fg)]">
+            <span class="text-[var(--color-accent)]">You leave.</span> We hand you a GitHub repo, a hosting account in your name, and the AI configuration. Your domain stays yours throughout (we never own it). Cancellation takes one email, plus 30 days. We've designed the whole thing so the exit is painless.
+          </p>
+        </div>
+        <div class="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8">
+          <p class="mb-4 text-sm font-medium uppercase tracking-wider text-[var(--color-fg-dim)]">"Do you work in my industry?"</p>
+          <p class="text-[var(--color-fg)]">
+            <span class="text-[var(--color-accent)]">Probably yes,</span> but the better question is whether we know <em>your kind of buyer</em>. We've built for service businesses (clinics, agencies, trades), independent professionals (consultants, coaches), and indie SaaS. If it's regulated (FDA, HIPAA, finance), we'll tell you on the discovery call before you commit a cent.
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -434,30 +538,116 @@ const faqs = [
   </section>
 
   <!-- ============================================================
-       FINAL CTA
-       One ask. No second option here.
+       FINAL CTA + inquiry form
+       Primary ask: book a call. Async fallback: form.
+       Form posts to Formspree — drop in your form ID at FORMSPREE_ID.
        ============================================================ -->
   <section id="contact" class="relative border-t border-[var(--color-border)] bg-[var(--color-bg)] py-32">
     <div class="pointer-events-none absolute inset-0 -z-10">
       <div class="absolute left-1/2 top-1/2 h-[400px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-accent)] opacity-[0.08] blur-3xl"></div>
     </div>
 
-    <div class="mx-auto max-w-3xl px-6 text-center">
-      <h2 class="mb-6 text-4xl font-bold tracking-tight sm:text-5xl">
-        Ready to never think about your website again?
-      </h2>
-      <p class="mb-10 text-lg text-[var(--color-fg-muted)]">
-        15 minutes on a call. You leave knowing exactly what your site will look like, what it will cost, and when it will be live. No high-pressure sales. We pitch one tier and stop talking.
-      </p>
-      <a
-        href="mailto:hello@buildsite.dev?subject=Discovery%20call"
-        class="inline-flex items-center justify-center rounded-md bg-[var(--color-accent)] px-8 py-4 text-lg font-medium text-[var(--color-accent-contrast)] transition hover:bg-[var(--color-accent-hover)]"
+    <div class="mx-auto max-w-3xl px-6">
+      <div class="text-center">
+        <h2 class="mb-6 text-4xl font-bold tracking-tight sm:text-5xl">
+          Ready to never think about your website again?
+        </h2>
+        <p class="mb-10 text-lg text-[var(--color-fg-muted)]">
+          15 minutes on a call. You leave knowing exactly what your site will look like, what it will cost, and when it will be live. No high-pressure sales — we pitch one tier and stop talking.
+        </p>
+        <a
+          href="https://cal.com/zcasee/discovery"
+          class="btn-primary inline-flex items-center justify-center rounded-md px-8 py-4 text-lg font-medium"
+        >
+          Book a discovery call →
+        </a>
+        <p class="mt-6 text-sm text-[var(--color-fg-dim)]">
+          Or send a message and we'll reply within one business day.
+        </p>
+      </div>
+
+      <form
+        action="https://formspree.io/f/FORMSPREE_ID"
+        method="POST"
+        class="mx-auto mt-12 max-w-xl space-y-4 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8"
       >
-        Book a discovery call →
-      </a>
-      <p class="mt-6 text-sm text-[var(--color-fg-dim)]">
-        Or email <a href="mailto:hello@buildsite.dev" class="text-[var(--color-fg)] hover:text-[var(--color-accent)]">hello@buildsite.dev</a>.
-      </p>
+        <div>
+          <label for="name" class="mb-2 block text-sm font-medium text-[var(--color-fg)]">Your name</label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            required
+            autocomplete="name"
+            class="w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-4 py-3 text-[var(--color-fg)] placeholder:text-[var(--color-fg-dim)] focus:border-[var(--color-accent)] focus:outline-none"
+            placeholder="Jane Smith"
+          />
+        </div>
+        <div>
+          <label for="email" class="mb-2 block text-sm font-medium text-[var(--color-fg)]">Email</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            autocomplete="email"
+            class="w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-4 py-3 text-[var(--color-fg)] placeholder:text-[var(--color-fg-dim)] focus:border-[var(--color-accent)] focus:outline-none"
+            placeholder="jane@yourbusiness.com"
+          />
+        </div>
+        <div>
+          <label for="business" class="mb-2 block text-sm font-medium text-[var(--color-fg)]">Your business <span class="text-[var(--color-fg-dim)]">(name + what you do)</span></label>
+          <input
+            id="business"
+            name="business"
+            type="text"
+            required
+            class="w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-4 py-3 text-[var(--color-fg)] placeholder:text-[var(--color-fg-dim)] focus:border-[var(--color-accent)] focus:outline-none"
+            placeholder="Smith Dental, family practice in Austin"
+          />
+        </div>
+        <div>
+          <label for="message" class="mb-2 block text-sm font-medium text-[var(--color-fg)]">What do you have in mind?</label>
+          <textarea
+            id="message"
+            name="message"
+            required
+            rows="4"
+            class="w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-4 py-3 text-[var(--color-fg)] placeholder:text-[var(--color-fg-dim)] focus:border-[var(--color-accent)] focus:outline-none"
+            placeholder="A few sentences about what's not working with your current site, or what you'd like to add."
+          ></textarea>
+        </div>
+
+        <!-- Honeypot for bots (hidden from real users) -->
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+
+        <!-- Tier preselect (optional but useful) -->
+        <div>
+          <label for="tier" class="mb-2 block text-sm font-medium text-[var(--color-fg)]">Tier you're considering <span class="text-[var(--color-fg-dim)]">(optional)</span></label>
+          <select
+            id="tier"
+            name="tier"
+            class="w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-4 py-3 text-[var(--color-fg)] focus:border-[var(--color-accent)] focus:outline-none"
+          >
+            <option value="">Not sure yet</option>
+            <option value="Lite ($299/mo)">Lite — $299/mo</option>
+            <option value="Pro ($799/mo)">Pro — $799/mo</option>
+            <option value="Studio ($1,899/mo)">Studio — $1,899/mo</option>
+            <option value="Custom">Something custom</option>
+          </select>
+        </div>
+
+        <button
+          type="submit"
+          class="btn-primary inline-flex w-full items-center justify-center rounded-md px-6 py-3 text-base font-medium"
+        >
+          Send message →
+        </button>
+
+        <p class="pt-2 text-center text-xs text-[var(--color-fg-dim)]">
+          We reply within one business day. No drip campaigns, no spam.
+        </p>
+      </form>
     </div>
   </section>
 
