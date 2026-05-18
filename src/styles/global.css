@@ -1,10 +1,18 @@
 @import "tailwindcss";
 
+/* ============================================================
+   Buildsite — design tokens.
+   Mirrors the canonical system at:
+   ~/.claude/skills/buildsite-design/colors_and_type.css
+   Dark-first. One accent. Editorial-minimal display weight (500).
+   ============================================================ */
+
 @theme {
-  /* Surface — dark-first (design guide §1.1: dark is the default aesthetic now) */
+  /* Surface ladder — step up one rung for hover; never invent intermediates. */
   --color-bg: #0a0a0f;
   --color-surface: #14141b;
   --color-surface-2: #1c1c26;
+  --color-surface-3: #232330;
   --color-border: #2a2a35;
   --color-border-strong: #3a3a48;
 
@@ -12,30 +20,43 @@
   --color-fg: #fafafa;
   --color-fg-muted: #a8a8b3;
   --color-fg-dim: #6b6b78;
+  --color-fg-on-accent: #0a0a0f;
+  /* Legacy alias retained so any older Tailwind `bg-accent-contrast` keeps resolving */
+  --color-accent-contrast: #0a0a0f;
 
-  /* Accent — neon-on-dark per design guide §1.1 */
+  /* Accent — neon-on-dark. One per surface, max. */
   --color-accent: #3b82f6;
   --color-accent-hover: #60a5fa;
-  --color-accent-contrast: #0a0a0f;
+  --color-accent-press: #2563eb;
+  --color-accent-soft: rgba(59, 130, 246, 0.12);
 
   /* Semantic */
   --color-success: #22c55e;
+  --color-success-soft: rgba(34, 197, 94, 0.14);
   --color-warning: #f59e0b;
+  --color-warning-soft: rgba(245, 158, 11, 0.14);
+  --color-danger: #ef4444;
+  --color-danger-soft: rgba(239, 68, 68, 0.14);
 
-  /* Type scale — Editorial Minimal, oversized headlines (design guide §1.3).
-     Geist is the display + body font; system fonts are fallback before
-     Geist arrives (avoids FOIT). */
+  /* Type — Geist for everything. Mono for numbers/prices/timestamps. */
   --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system,
-    BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
-    "Apple Color Emoji", "Segoe UI Emoji";
-  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco,
-    Consolas, "Liberation Mono", "Courier New", monospace;
+    BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo,
+    Monaco, Consolas, monospace;
 
-  /* Radii — consistent across the system */
+  /* Radii — md for inputs/buttons, lg for cards, xl for hero cards. */
+  --radius-xs: 0.25rem;
   --radius-sm: 0.375rem;
   --radius-md: 0.625rem;
   --radius-lg: 1rem;
   --radius-xl: 1.5rem;
+
+  /* Motion — one easing for everything. */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+  --dur-med: 320ms;
+  --dur-slow: 600ms;
 }
 
 /* Base */
@@ -46,7 +67,7 @@ html {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   scroll-behavior: smooth;
-  /* Geist supports the "ss01" stylistic set for cleaner numerals — opt in. */
+  /* Geist stylistic sets — clean numerals + alt characters. */
   font-feature-settings: "ss01" on, "cv11" on;
 }
 
@@ -56,69 +77,82 @@ body {
   min-height: 100vh;
 }
 
-/* Focus — design guide accessibility section */
+/* Focus ring — accent, offset, slight radius. */
 *:focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 2px;
-  border-radius: 4px;
+  border-radius: var(--radius-xs);
 }
 
-/* Selection */
 ::selection {
   background: var(--color-accent);
-  color: var(--color-accent-contrast);
+  color: var(--color-fg-on-accent);
 }
 
-/* Motion — design guide §1.2: motion is a system, not a flourish.
-   Honor reduced-motion. */
+/* ============================================================
+   MOTION
+   Entrances animate transform ONLY (never opacity). Reason:
+   SSR / pre-rendered HTML / OG screenshots all need first-paint
+   to be correct — fading from 0 leaves the page invisible to
+   crawlers and previewers.
+   ============================================================ */
 @media (prefers-reduced-motion: no-preference) {
   .fade-up {
-    animation: fade-up 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation: fade-up var(--dur-slow) var(--ease-out) both;
   }
   .fade-up-delay {
-    animation: fade-up 600ms cubic-bezier(0.16, 1, 0.3, 1) 120ms both;
+    animation: fade-up var(--dur-slow) var(--ease-out) 120ms both;
   }
   .fade-up-delay-2 {
-    animation: fade-up 600ms cubic-bezier(0.16, 1, 0.3, 1) 240ms both;
+    animation: fade-up var(--dur-slow) var(--ease-out) 240ms both;
   }
 }
 
 @keyframes fade-up {
   from {
-    opacity: 0;
     transform: translateY(12px);
   }
   to {
-    opacity: 1;
     transform: translateY(0);
   }
 }
 
-/* Button micro-interactions — design guide §1.2 (subtle hover scale + shadow). */
+/* ============================================================
+   BUTTONS
+   Primary: accent fill, lift on hover, press to accent-press.
+   Secondary: bordered, surface fill on hover.
+   ============================================================ */
 .btn-primary {
   background: var(--color-accent);
-  color: var(--color-accent-contrast);
+  color: var(--color-fg-on-accent);
+  border: 1px solid var(--color-accent);
   transition:
-    background 180ms ease,
-    transform 180ms cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 180ms ease;
+    background var(--dur-base) ease,
+    transform var(--dur-base) var(--ease-out),
+    box-shadow var(--dur-base) ease,
+    border-color var(--dur-base) ease;
 }
 .btn-primary:hover {
   background: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
   transform: translateY(-1px);
   box-shadow: 0 8px 24px -8px var(--color-accent);
 }
 .btn-primary:active {
+  background: var(--color-accent-press);
+  border-color: var(--color-accent-press);
   transform: translateY(0);
+  box-shadow: none;
 }
 
 .btn-secondary {
+  background: transparent;
   border: 1px solid var(--color-border-strong);
   color: var(--color-fg);
   transition:
-    background 180ms ease,
-    transform 180ms cubic-bezier(0.16, 1, 0.3, 1),
-    border-color 180ms ease;
+    background var(--dur-base) ease,
+    transform var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) ease;
 }
 .btn-secondary:hover {
   background: var(--color-surface);
@@ -126,16 +160,65 @@ body {
   transform: translateY(-1px);
 }
 
-/* Tier card lift — only the highlighted tier gets a stronger lift. */
+/* ============================================================
+   TIER CARDS
+   Plain border default. Glow ONLY on the highlighted (Pro) tier.
+   ============================================================ */
 .tier-card {
   transition:
-    transform 200ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 200ms var(--ease-out),
     box-shadow 200ms ease,
     border-color 200ms ease;
 }
 .tier-card:hover {
   transform: translateY(-4px);
+  border-color: var(--color-border-strong);
 }
 .tier-card.tier-highlight:hover {
   box-shadow: 0 0 60px -12px var(--color-accent);
+}
+
+/* ============================================================
+   HERO GRID PATTERN
+   28px grid at 3.5% white. Layered behind the accent spotlight.
+   Per design system: hero/marketing surfaces only.
+   ============================================================ */
+.hero-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(
+    ellipse at 30% 30%,
+    black 0%,
+    transparent 70%
+  );
+}
+
+/* ============================================================
+   TYPOGRAPHY HELPERS
+   The brand's editorial-minimal display weight is 500 — not 700.
+   These classes apply weight 500 + tight tracking to display heads.
+   ============================================================ */
+.display {
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+.h-section {
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+}
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-fg-dim);
+}
+.mono {
+  font-family: var(--font-mono);
+  letter-spacing: -0.01em;
+  font-feature-settings: "ss01" on;
 }

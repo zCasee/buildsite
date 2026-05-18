@@ -6,9 +6,9 @@ const tiers = [
     name: "Lite",
     price: "$299",
     cadence: "/mo",
-    tagline: "A great website, fully managed.",
+    tagline: "A great website. Fully managed.",
     description:
-      "Get a custom 5-page website. We build it, deploy it, monitor it, and edit it for you every month. No CMS to learn, no theme to fight.",
+      "Custom 5-page site. We build it, deploy it, monitor it, edit it every month. No CMS to learn. No theme to fight.",
     features: [
       "Up to 5 pages, custom-designed",
       "Live in 14 days from kickoff",
@@ -27,7 +27,7 @@ const tiers = [
     cadence: "/mo",
     tagline: "A website that works for you.",
     description:
-      "Everything in Lite, plus an AI assistant trained on your business. It answers prospect questions, qualifies leads, and books calls — all while you sleep.",
+      "Everything in Lite, plus an AI assistant trained on your business. Answers prospects. Qualifies leads. Books calls while you sleep.",
     features: [
       "Everything in Lite",
       "AI assistant trained on your docs",
@@ -46,7 +46,7 @@ const tiers = [
     cadence: "/mo",
     tagline: "A custom tool, on tap.",
     description:
-      "Everything in Pro, plus a custom integration or tool. CRM hookups, internal dashboards, automation. Dedicated dev hours every month.",
+      "Everything in Pro, plus a custom integration or tool. CRM hookups. Internal dashboards. Automation. Dedicated dev hours.",
     features: [
       "Everything in Pro",
       "One custom tool or integration",
@@ -64,7 +64,7 @@ const tiers = [
 const faqs = [
   {
     q: "What if I already have a website?",
-    a: "We migrate it. The first build cycle gets your existing site rebuilt on our stack — usually faster, more accessible, and easier to edit. You keep your URL, your content, and your search rankings.",
+    a: "We migrate it. The first build cycle gets your existing site rebuilt on our stack — faster, more accessible, easier to edit. You keep your URL, your content, your search rankings.",
   },
   {
     q: "Who owns the code and the site?",
@@ -76,15 +76,15 @@ const faqs = [
   },
   {
     q: "What counts as a content edit?",
-    a: "Anything that takes us under 30 minutes: new copy, swap an image, add a testimonial, update pricing, publish a blog post, fix a typo. Bigger work (new pages, new features, redesigns) is covered by the dev hours on Pro and Studio, or quoted separately.",
+    a: "Anything under 30 minutes: new copy, swap an image, add a testimonial, update pricing, publish a blog post, fix a typo. Bigger work (new pages, new features, redesigns) is covered by the dev hours on Pro and Studio, or quoted separately.",
   },
   {
     q: "How fast is &quot;live in 14 days&quot;?",
-    a: "From kickoff call to a deployed staging URL. We send you 3-5 design directions on day 3, you pick one, we build the rest. You'll be reviewing real pages by day 7. The 14-day promise assumes you give feedback within a business day at each step.",
+    a: "From kickoff call to a deployed staging URL. We send you 3-5 design directions on day 3. You pick one. We build the rest. You'll be reviewing real pages by day 7. The 14-day promise assumes you give feedback within a business day at each step.",
   },
   {
     q: "What's not included?",
-    a: "Branding (logo, color identity, brand voice) — we partner with designers for that. Copy that requires deep research into your industry — we'll write what we can from a discovery call, but a copywriter is sometimes the right call. Custom photography. Anything that needs to be FDA / HIPAA / SOC2 audited.",
+    a: "Branding (logo, color identity, brand voice) — we partner with designers for that. Copy that requires deep research into your industry — we'll write what we can from a discovery call, but a copywriter is sometimes the right call. Custom photography. Anything FDA / HIPAA / SOC2 audited.",
   },
   {
     q: "What if I need more than the included edits or features?",
@@ -95,12 +95,12 @@ const faqs = [
 
 <BaseLayout>
   <!-- ============================================================
-       NAV
-       Design guide §1.3 — typography does the work; logo is type.
+       NAV — translucent over hero, sticky, blur. Per design system §
+       "Transparency & blur" — top bars only.
        ============================================================ -->
   <header class="sticky top-0 z-50 border-b border-[var(--color-border)] bg-[var(--color-bg)]/85 backdrop-blur-md">
-    <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-      <a href="#" class="text-lg font-bold tracking-tight text-[var(--color-fg)]">
+    <nav class="mx-auto flex max-w-[1200px] items-center justify-between px-6 py-4">
+      <a href="#" class="text-lg font-semibold tracking-tight text-[var(--color-fg)]">
         Buildsite<span class="text-[var(--color-accent)]">.</span>
       </a>
       <div class="flex items-center gap-6 text-sm text-[var(--color-fg-muted)]">
@@ -109,7 +109,7 @@ const faqs = [
         <a href="#faq" class="hidden hover:text-[var(--color-fg)] sm:inline">FAQ</a>
         <a
           href="#contact"
-          class="btn-primary rounded-md px-4 py-2 text-sm font-medium"
+          class="btn-primary rounded-[0.625rem] px-4 py-2 text-sm font-medium"
         >
           Book a call
         </a>
@@ -118,84 +118,85 @@ const faqs = [
   </header>
 
   <!-- ============================================================
-       HERO
-       Design guide rule #1: outcome headline + mechanism subline +
-       ONE CTA + (optional) product preview. Nothing else.
-       Editorial Minimal — oversized type carries the weight.
+       HERO — oversized periods-stack display, weight 500.
+       Grid pattern + single off-center accent spotlight per design
+       system §"Backgrounds & motifs".
        ============================================================ -->
   <section class="relative overflow-hidden">
-    <!-- Background grain / glow -->
+    <!-- Grid pattern (28px, ~3.5% white) masked to top-left -->
+    <div class="hero-grid pointer-events-none absolute inset-0 -z-10"></div>
+    <!-- Single off-center accent spotlight -->
     <div class="pointer-events-none absolute inset-0 -z-10">
-      <div class="absolute -top-40 left-1/2 h-[600px] w-[1200px] -translate-x-1/2 rounded-full bg-[var(--color-accent)] opacity-[0.08] blur-3xl"></div>
+      <div class="absolute -top-40 left-[20%] h-[600px] w-[1200px] -translate-x-1/2 rounded-full bg-[var(--color-accent)] opacity-[0.12] blur-3xl"></div>
     </div>
 
-    <div class="mx-auto max-w-6xl px-6 pb-24 pt-24 sm:pt-32 lg:pt-40">
-      <p class="fade-up mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-1 text-xs text-[var(--color-fg-muted)]">
-        <span class="h-1.5 w-1.5 rounded-full bg-[var(--color-success)]"></span>
-        Now booking June 2026
+    <div class="mx-auto max-w-[1200px] px-6 pb-24 pt-24 sm:pt-32 lg:pt-40">
+      <p class="fade-up eyebrow mb-8 inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-1">
+        <span class="h-1.5 w-1.5 rounded-full bg-[var(--color-success)] shadow-[0_0_6px_var(--color-success)]"></span>
+        <span class="normal-case tracking-normal text-[var(--color-fg-muted)]">Now booking June 2026</span>
       </p>
 
-      <h1 class="fade-up mb-6 max-w-4xl text-5xl font-bold leading-[1.05] tracking-tight text-[var(--color-fg)] sm:text-6xl lg:text-7xl">
-        Your website. An AI assistant. One monthly fee. <span class="text-[var(--color-fg-muted)]">Forever.</span>
+      <h1 class="fade-up display mb-8 max-w-5xl text-[var(--color-fg)]">
+        <span class="block text-5xl sm:text-6xl lg:text-7xl xl:text-8xl">Your website.</span>
+        <span class="block text-5xl sm:text-6xl lg:text-7xl xl:text-8xl">An AI assistant.</span>
+        <span class="block text-5xl text-[var(--color-fg-muted)] sm:text-6xl lg:text-7xl xl:text-8xl">One monthly fee.</span>
       </h1>
 
       <p class="fade-up-delay mb-10 max-w-2xl text-lg text-[var(--color-fg-muted)] sm:text-xl">
-        Buildsite is a productized website service for small businesses.
-        We build your site, train an AI assistant on your business, and keep both running — for the price of one part-time hire.
+        Productized website service for small businesses. We build your site, train an AI assistant on your business, and keep both running — for the price of one part-time hire.
       </p>
 
       <div class="fade-up-delay-2 flex flex-col gap-3 sm:flex-row">
         <a
           href="#contact"
-          class="btn-primary inline-flex items-center justify-center rounded-md px-6 py-3 text-base font-medium"
+          class="btn-primary inline-flex items-center justify-center rounded-[0.625rem] px-6 py-3 text-base font-medium"
         >
-          Book a 15-min discovery call →
+          Book a 15-min discovery call <span class="mono ml-1">→</span>
         </a>
         <a
           href="#pricing"
-          class="btn-secondary inline-flex items-center justify-center rounded-md px-6 py-3 text-base font-medium"
+          class="btn-secondary inline-flex items-center justify-center rounded-[0.625rem] px-6 py-3 text-base font-medium"
         >
           See the tiers
         </a>
       </div>
 
       <p class="fade-up-delay-2 mt-8 text-sm text-[var(--color-fg-dim)]">
-        From <span class="text-[var(--color-fg)]">$299/mo</span>. 14-day launch. 6-month minimum, then month-to-month.
+        From <span class="mono text-[var(--color-fg)]">$299/mo</span>. 14-day launch. 6-month minimum, then month-to-month.
       </p>
     </div>
   </section>
 
   <!-- ============================================================
-       PROBLEM
-       Naming the pain at the moment doubt peaks (design guide §3).
+       PROBLEM — receipts beat adjectives. Metric callouts, no emoji.
        ============================================================ -->
   <section class="border-t border-[var(--color-border)] bg-[var(--color-bg)] py-24">
-    <div class="mx-auto max-w-6xl px-6">
-      <p class="mb-3 text-sm font-medium uppercase tracking-wider text-[var(--color-accent)]">The current reality</p>
-      <h2 class="mb-12 max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl">
+    <div class="mx-auto max-w-[1200px] px-6">
+      <p class="eyebrow mb-3 text-[var(--color-accent)]">The current reality</p>
+      <h2 class="h-section mb-12 max-w-3xl text-3xl text-[var(--color-fg)] sm:text-4xl lg:text-5xl">
         Your website is somewhere between an inconvenience and an active liability.
       </h2>
 
       <div class="grid gap-6 sm:grid-cols-3">
-        <div class="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6">
-          <div class="mb-4 text-3xl">🪦</div>
+        <div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8">
+          <p class="mono mb-6 text-3xl text-[var(--color-fg)]">0 leads<span class="text-[var(--color-fg-dim)]">/mo</span></p>
           <h3 class="mb-2 text-lg font-semibold">It's stale.</h3>
-          <p class="text-sm text-[var(--color-fg-muted)]">
-            Last updated when? You don't even have the password to the CMS. The phone number's wrong. The "Latest News" is from 2023.
+          <p class="text-sm leading-relaxed text-[var(--color-fg-muted)]">
+            Last updated when? You don't have the CMS password. The phone number is wrong. The "Latest News" is from 2023.
           </p>
         </div>
-        <div class="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6">
-          <div class="mb-4 text-3xl">🐌</div>
+        <div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8">
+          <p class="mono mb-6 text-3xl text-[var(--color-fg)]">8.2s<span class="text-[var(--color-fg-dim)]"> mobile load</span></p>
           <h3 class="mb-2 text-lg font-semibold">It's slow.</h3>
-          <p class="text-sm text-[var(--color-fg-muted)]">
-            Hero image is 4 MB. Mobile takes 8 seconds to load. Google demoted you. The bounce rate is 71%. You don't know what bounce rate is.
+          <p class="text-sm leading-relaxed text-[var(--color-fg-muted)]">
+            Hero image is 4 MB. Google demoted you. The bounce rate is 71%. You don't know what bounce rate is. You shouldn't have to.
           </p>
         </div>
-        <div class="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6">
-          <div class="mb-4 text-3xl">🎣</div>
+        <div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8">
+          <p class="mono mb-6 text-3xl text-[var(--color-fg)]">12<span class="text-[var(--color-fg-dim)]"> form fields</span></p>
           <h3 class="mb-2 text-lg font-semibold">It doesn't fish.</h3>
-          <p class="text-sm text-[var(--color-fg-muted)]">
-            The contact form has 12 fields. Half the leads ghost. Of the ones who don't, you spend Monday morning replying with answers your website already kind of has.
+          <p class="text-sm leading-relaxed text-[var(--color-fg-muted)]">
+            Half the leads ghost. Of the ones who don't, you spend Monday morning replying with answers your website already kind of has.
           </p>
         </div>
       </div>
@@ -204,12 +205,11 @@ const faqs = [
 
   <!-- ============================================================
        SOLUTION
-       Mechanism — how Buildsite is structurally different.
        ============================================================ -->
   <section class="border-t border-[var(--color-border)] bg-[var(--color-surface)] py-24">
-    <div class="mx-auto max-w-6xl px-6">
-      <p class="mb-3 text-sm font-medium uppercase tracking-wider text-[var(--color-accent)]">What changes</p>
-      <h2 class="mb-12 max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl">
+    <div class="mx-auto max-w-[1200px] px-6">
+      <p class="eyebrow mb-3 text-[var(--color-accent)]">What changes</p>
+      <h2 class="h-section mb-12 max-w-3xl text-3xl text-[var(--color-fg)] sm:text-4xl lg:text-5xl">
         We take the website off your plate. <span class="text-[var(--color-fg-muted)]">Permanently.</span>
       </h2>
 
@@ -223,7 +223,7 @@ const faqs = [
         <div>
           <h3 class="mb-3 text-xl font-semibold">An AI assistant that knows your business.</h3>
           <p class="text-[var(--color-fg-muted)]">
-            We train a chatbot on your service docs, FAQs, pricing, and policies. It answers prospects 24/7, qualifies leads with the right next question, and books calls into your calendar. (Pro and Studio tiers.)
+            We train a chatbot on your service docs, FAQs, pricing, and policies. It answers prospects 24/7, qualifies leads with the right next question, books calls into your calendar. (Pro and Studio.)
           </p>
         </div>
         <div>
@@ -247,7 +247,7 @@ const faqs = [
         <div>
           <h3 class="mb-3 text-xl font-semibold">Real reporting.</h3>
           <p class="text-[var(--color-fg-muted)]">
-            Monthly report on traffic, leads captured, AI conversations, and what the data says you should change next. We use Plausible (privacy-first) and Cloudflare Web Analytics.
+            Monthly report on traffic, leads captured, AI conversations, and what the data says you should change next. We use Plausible — privacy-first, cookieless.
           </p>
         </div>
       </div>
@@ -256,36 +256,37 @@ const faqs = [
 
   <!-- ============================================================
        HOW IT WORKS
-       Numbered, calm, deliverable per step.
        ============================================================ -->
   <section id="how" class="border-t border-[var(--color-border)] bg-[var(--color-bg)] py-24">
-    <div class="mx-auto max-w-6xl px-6">
-      <p class="mb-3 text-sm font-medium uppercase tracking-wider text-[var(--color-accent)]">How it works</p>
-      <h2 class="mb-12 max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl">Three weeks from this page to a website your customers actually use.</h2>
+    <div class="mx-auto max-w-[1200px] px-6">
+      <p class="eyebrow mb-3 text-[var(--color-accent)]">How it works</p>
+      <h2 class="h-section mb-12 max-w-3xl text-3xl text-[var(--color-fg)] sm:text-4xl lg:text-5xl">
+        Three weeks from this page to a website your customers actually use.
+      </h2>
 
       <ol class="grid gap-8 md:grid-cols-3">
-        <li class="relative rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8">
-          <div class="absolute -top-4 left-8 flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-accent)] text-sm font-bold text-[var(--color-accent-contrast)]">1</div>
+        <li class="relative rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8">
+          <div class="mono absolute -top-4 left-8 flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-accent)] text-sm font-semibold text-[var(--color-fg-on-accent)]">01</div>
           <h3 class="mb-3 text-lg font-semibold">Discovery call (15 min)</h3>
-          <p class="mb-4 text-sm text-[var(--color-fg-muted)]">
+          <p class="mb-4 text-sm leading-relaxed text-[var(--color-fg-muted)]">
             One short call. We ask what your business does, who buys from you, and what would change if your website actually worked. You leave knowing exactly which tier fits and what the first 14 days look like.
           </p>
-          <p class="text-xs text-[var(--color-fg-dim)]">No prep, no slides.</p>
+          <p class="text-xs text-[var(--color-fg-dim)]">No prep. No slides.</p>
         </li>
 
-        <li class="relative rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8">
-          <div class="absolute -top-4 left-8 flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-accent)] text-sm font-bold text-[var(--color-accent-contrast)]">2</div>
+        <li class="relative rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8">
+          <div class="mono absolute -top-4 left-8 flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-accent)] text-sm font-semibold text-[var(--color-fg-on-accent)]">02</div>
           <h3 class="mb-3 text-lg font-semibold">Build (14 days)</h3>
-          <p class="mb-4 text-sm text-[var(--color-fg-muted)]">
+          <p class="mb-4 text-sm leading-relaxed text-[var(--color-fg-muted)]">
             Day 3: you pick a design direction from three options. Day 7: you're reviewing real pages on a staging URL. Day 10: the AI assistant answers test questions from your docs. Day 14: we launch.
           </p>
           <p class="text-xs text-[var(--color-fg-dim)]">You spend ~3 hours total.</p>
         </li>
 
-        <li class="relative rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8">
-          <div class="absolute -top-4 left-8 flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-accent)] text-sm font-bold text-[var(--color-accent-contrast)]">3</div>
+        <li class="relative rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8">
+          <div class="mono absolute -top-4 left-8 flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-accent)] text-sm font-semibold text-[var(--color-fg-on-accent)]">03</div>
           <h3 class="mb-3 text-lg font-semibold">Run (every month after)</h3>
-          <p class="mb-4 text-sm text-[var(--color-fg-muted)]">
+          <p class="mb-4 text-sm leading-relaxed text-[var(--color-fg-muted)]">
             You forget the website exists. We update copy, ship new pages, retrain the AI on new docs, monitor uptime, fix things before you notice. You read the monthly report and reply with what you want next.
           </p>
           <p class="text-xs text-[var(--color-fg-dim)]">Cancel anytime after month six.</p>
@@ -296,67 +297,66 @@ const faqs = [
 
   <!-- ============================================================
        COMPARISON
-       "Where does this sit between the alternatives?" — anchors pricing.
        ============================================================ -->
   <section class="border-t border-[var(--color-border)] bg-[var(--color-bg)] py-24">
-    <div class="mx-auto max-w-6xl px-6">
-      <p class="mb-3 text-sm font-medium uppercase tracking-wider text-[var(--color-accent)]">How we stack up</p>
-      <h2 class="mb-12 max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl">
+    <div class="mx-auto max-w-[1200px] px-6">
+      <p class="eyebrow mb-3 text-[var(--color-accent)]">How we stack up</p>
+      <h2 class="h-section mb-12 max-w-3xl text-3xl text-[var(--color-fg)] sm:text-4xl lg:text-5xl">
         Between "build it yourself" and "hire an agency."
       </h2>
 
-      <div class="overflow-x-auto rounded-xl border border-[var(--color-border)]">
+      <div class="overflow-x-auto rounded-2xl border border-[var(--color-border)]">
         <table class="w-full text-left text-sm">
           <thead class="border-b border-[var(--color-border)] bg-[var(--color-surface)]">
             <tr>
               <th class="px-6 py-4 font-medium text-[var(--color-fg-muted)]"></th>
               <th class="px-6 py-4 font-medium text-[var(--color-fg-muted)]">Wix / Squarespace</th>
               <th class="px-6 py-4 font-medium text-[var(--color-fg-muted)]">Hire an agency</th>
-              <th class="bg-[var(--color-accent)]/8 px-6 py-4 font-semibold text-[var(--color-fg)]">Buildsite</th>
+              <th class="bg-[var(--color-accent-soft)] px-6 py-4 font-semibold text-[var(--color-fg)]">Buildsite</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-[var(--color-border)]">
             <tr>
               <td class="px-6 py-4 font-medium">Upfront cost</td>
-              <td class="px-6 py-4 text-[var(--color-fg-muted)]">$0–$50/mo</td>
-              <td class="px-6 py-4 text-[var(--color-fg-muted)]">$8k–$40k</td>
-              <td class="bg-[var(--color-accent)]/5 px-6 py-4 text-[var(--color-fg)]">$0 setup</td>
+              <td class="px-6 py-4 text-[var(--color-fg-muted)]"><span class="mono">$0–$50</span>/mo</td>
+              <td class="px-6 py-4 text-[var(--color-fg-muted)]"><span class="mono">$8k–$40k</span></td>
+              <td class="bg-[var(--color-accent-soft)]/50 px-6 py-4 text-[var(--color-fg)]"><span class="mono">$0</span> setup</td>
             </tr>
             <tr>
               <td class="px-6 py-4 font-medium">Time to launch</td>
-              <td class="px-6 py-4 text-[var(--color-fg-muted)]">Your weekends, indefinitely</td>
+              <td class="px-6 py-4 text-[var(--color-fg-muted)]">Your weekends. Indefinitely.</td>
               <td class="px-6 py-4 text-[var(--color-fg-muted)]">3–6 months</td>
-              <td class="bg-[var(--color-accent)]/5 px-6 py-4 text-[var(--color-fg)]">14 days</td>
+              <td class="bg-[var(--color-accent-soft)]/50 px-6 py-4 text-[var(--color-fg)]"><span class="mono">14 days</span></td>
             </tr>
             <tr>
               <td class="px-6 py-4 font-medium">Ongoing edits</td>
-              <td class="px-6 py-4 text-[var(--color-fg-muted)]">You do them</td>
-              <td class="px-6 py-4 text-[var(--color-fg-muted)]">Hourly invoices ($150–$250/hr)</td>
-              <td class="bg-[var(--color-accent)]/5 px-6 py-4 text-[var(--color-fg)]">Included monthly</td>
+              <td class="px-6 py-4 text-[var(--color-fg-muted)]">You do them.</td>
+              <td class="px-6 py-4 text-[var(--color-fg-muted)]">Hourly invoices (<span class="mono">$150–$250</span>/hr)</td>
+              <td class="bg-[var(--color-accent-soft)]/50 px-6 py-4 text-[var(--color-fg)]">Included monthly</td>
             </tr>
             <tr>
               <td class="px-6 py-4 font-medium">AI assistant</td>
-              <td class="px-6 py-4 text-[var(--color-fg-muted)]">Not really</td>
+              <td class="px-6 py-4 text-[var(--color-fg-muted)]">Not really.</td>
               <td class="px-6 py-4 text-[var(--color-fg-muted)]">Custom build, $$$</td>
-              <td class="bg-[var(--color-accent)]/5 px-6 py-4 text-[var(--color-fg)]">Built in (Pro+)</td>
+              <td class="bg-[var(--color-accent-soft)]/50 px-6 py-4 text-[var(--color-fg)]">Built in (Pro+)</td>
             </tr>
             <tr>
               <td class="px-6 py-4 font-medium">Performance</td>
-              <td class="px-6 py-4 text-[var(--color-fg-muted)]">Heavy templates, slow on mobile</td>
-              <td class="px-6 py-4 text-[var(--color-fg-muted)]">Depends on the agency</td>
-              <td class="bg-[var(--color-accent)]/5 px-6 py-4 text-[var(--color-fg)]">Lighthouse 100, every site</td>
+              <td class="px-6 py-4 text-[var(--color-fg-muted)]">Heavy templates. Slow on mobile.</td>
+              <td class="px-6 py-4 text-[var(--color-fg-muted)]">Depends on the agency.</td>
+              <td class="bg-[var(--color-accent-soft)]/50 px-6 py-4 text-[var(--color-fg)]">Lighthouse 100. Every site.</td>
             </tr>
             <tr>
               <td class="px-6 py-4 font-medium">Who owns it</td>
-              <td class="px-6 py-4 text-[var(--color-fg-muted)]">They do</td>
-              <td class="px-6 py-4 text-[var(--color-fg-muted)]">Usually them, you'd have to ask</td>
-              <td class="bg-[var(--color-accent)]/5 px-6 py-4 text-[var(--color-fg)]">You, from day one</td>
+              <td class="px-6 py-4 text-[var(--color-fg-muted)]">They do.</td>
+              <td class="px-6 py-4 text-[var(--color-fg-muted)]">Usually them.</td>
+              <td class="bg-[var(--color-accent-soft)]/50 px-6 py-4 text-[var(--color-fg)]">You. From day one.</td>
             </tr>
             <tr>
               <td class="px-6 py-4 font-medium">When something breaks</td>
-              <td class="px-6 py-4 text-[var(--color-fg-muted)]">Support ticket queue</td>
-              <td class="px-6 py-4 text-[var(--color-fg-muted)]">Email someone, hope they reply</td>
-              <td class="bg-[var(--color-accent)]/5 px-6 py-4 text-[var(--color-fg)]">We fix before you notice</td>
+              <td class="px-6 py-4 text-[var(--color-fg-muted)]">Support ticket queue.</td>
+              <td class="px-6 py-4 text-[var(--color-fg-muted)]">Email someone. Hope.</td>
+              <td class="bg-[var(--color-accent-soft)]/50 px-6 py-4 text-[var(--color-fg)]">We fix before you notice.</td>
             </tr>
           </tbody>
         </table>
@@ -365,15 +365,16 @@ const faqs = [
   </section>
 
   <!-- ============================================================
-       PRICING
-       Three tiers. Middle one anchored. Per business-ops §1.
+       PRICING — three tiers. Glow only on Pro. Mono prices.
        ============================================================ -->
   <section id="pricing" class="border-t border-[var(--color-border)] bg-[var(--color-surface)] py-24">
-    <div class="mx-auto max-w-6xl px-6">
-      <p class="mb-3 text-sm font-medium uppercase tracking-wider text-[var(--color-accent)]">Pricing</p>
-      <h2 class="mb-4 max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl">Three tiers. No setup fees. No surprises.</h2>
+    <div class="mx-auto max-w-[1200px] px-6">
+      <p class="eyebrow mb-3 text-[var(--color-accent)]">Pricing</p>
+      <h2 class="h-section mb-4 max-w-3xl text-3xl text-[var(--color-fg)] sm:text-4xl lg:text-5xl">
+        Three tiers. No setup fees. No surprises.
+      </h2>
       <p class="mb-12 max-w-2xl text-[var(--color-fg-muted)]">
-        Most businesses start on <span class="text-[var(--color-fg)]">Pro</span> because the AI assistant pays for itself the first month it captures a lead you would have missed.
+        Most businesses start on <span class="text-[var(--color-fg)]">Pro</span> — the AI assistant pays for itself the first month it captures a lead you would have missed.
       </p>
 
       <div class="grid gap-6 lg:grid-cols-3">
@@ -387,25 +388,25 @@ const faqs = [
               }
             >
               {tier.highlight && (
-                <span class="absolute -top-3 right-6 rounded-full bg-[var(--color-accent)] px-3 py-1 text-xs font-medium text-[var(--color-accent-contrast)]">
+                <span class="absolute -top-3 right-6 rounded-full bg-[var(--color-accent)] px-3 py-1 text-xs font-medium text-[var(--color-fg-on-accent)]">
                   Most pick this
                 </span>
               )}
-              <h3 class="mb-1 text-2xl font-bold">{tier.name}</h3>
+              <h3 class="mb-1 text-2xl font-semibold">{tier.name}</h3>
               <p class="mb-6 text-sm text-[var(--color-fg-muted)]">{tier.tagline}</p>
 
               <div class="mb-6 flex items-baseline gap-1">
-                <span class="text-5xl font-bold tracking-tight">{tier.price}</span>
-                <span class="text-[var(--color-fg-muted)]">{tier.cadence}</span>
+                <span class="mono text-5xl font-medium tracking-tight text-[var(--color-fg)]">{tier.price}</span>
+                <span class="mono text-[var(--color-fg-muted)]">{tier.cadence}</span>
               </div>
 
-              <p class="mb-8 text-sm text-[var(--color-fg-muted)]">{tier.description}</p>
+              <p class="mb-8 text-sm leading-relaxed text-[var(--color-fg-muted)]">{tier.description}</p>
 
               <ul class="mb-8 space-y-3 text-sm">
                 {tier.features.map((f) => (
                   <li class="flex items-start gap-2">
-                    <span class="mt-0.5 flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-accent)]/15 text-[var(--color-accent)]">
-                      ✓
+                    <span class="mt-0.5 flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-soft)] text-[var(--color-accent)]">
+                      <span class="mono text-[10px]">✓</span>
                     </span>
                     <span class="text-[var(--color-fg)]">{f}</span>
                   </li>
@@ -416,8 +417,8 @@ const faqs = [
                 href={tier.href}
                 class={
                   tier.highlight
-                    ? "inline-flex w-full items-center justify-center rounded-md bg-[var(--color-accent)] px-5 py-3 font-medium text-[var(--color-accent-contrast)] transition hover:bg-[var(--color-accent-hover)]"
-                    : "inline-flex w-full items-center justify-center rounded-md border border-[var(--color-border-strong)] px-5 py-3 font-medium text-[var(--color-fg)] transition hover:bg-[var(--color-surface-2)]"
+                    ? "btn-primary inline-flex w-full items-center justify-center rounded-[0.625rem] px-5 py-3 font-medium"
+                    : "btn-secondary inline-flex w-full items-center justify-center rounded-[0.625rem] px-5 py-3 font-medium"
                 }
               >
                 {tier.cta}
@@ -430,37 +431,36 @@ const faqs = [
       <p class="mt-12 text-center text-sm text-[var(--color-fg-muted)]">
         Every tier: 6-month minimum, then month-to-month. You own the code and the URL. No lock-in.
         <br />
-        Need something custom? <a href="#contact" class="text-[var(--color-accent)] hover:underline">Tell us what you have in mind →</a>
+        Need something custom? <a href="#contact" class="text-[var(--color-accent)] hover:underline">Tell us what you have in mind <span class="mono">→</span></a>
       </p>
     </div>
   </section>
 
   <!-- ============================================================
        OBJECTIONS
-       Address the legitimate skepticism. Doubt-peak moment after pricing.
        ============================================================ -->
   <section class="border-t border-[var(--color-border)] bg-[var(--color-bg)] py-24">
-    <div class="mx-auto max-w-6xl px-6">
-      <p class="mb-3 text-sm font-medium uppercase tracking-wider text-[var(--color-accent)]">What you're probably thinking</p>
-      <h2 class="mb-12 max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl">
+    <div class="mx-auto max-w-[1200px] px-6">
+      <p class="eyebrow mb-3 text-[var(--color-accent)]">What you're probably thinking</p>
+      <h2 class="h-section mb-12 max-w-3xl text-3xl text-[var(--color-fg)] sm:text-4xl lg:text-5xl">
         Three fair concerns. Three direct answers.
       </h2>
 
       <div class="grid gap-8 lg:grid-cols-3">
-        <div class="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8">
-          <p class="mb-4 text-sm font-medium uppercase tracking-wider text-[var(--color-fg-dim)]">"Isn't this just AI slop?"</p>
+        <div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8">
+          <p class="eyebrow mb-4">"Isn't this just AI slop?"</p>
           <p class="text-[var(--color-fg)]">
             <span class="text-[var(--color-accent)]">No.</span> AI is a tool we use during the build, the same way a carpenter uses a power saw. The output is reviewed, hand-tuned, and held to a standard you'd recognize from any high-end design studio. If a section reads like a chatbot wrote it, we cut it.
           </p>
         </div>
-        <div class="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8">
-          <p class="mb-4 text-sm font-medium uppercase tracking-wider text-[var(--color-fg-dim)]">"What if I want to leave?"</p>
+        <div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8">
+          <p class="eyebrow mb-4">"What if I want to leave?"</p>
           <p class="text-[var(--color-fg)]">
-            <span class="text-[var(--color-accent)]">You leave.</span> We hand you a GitHub repo, a hosting account in your name, and the AI configuration. Your domain stays yours throughout (we never own it). Cancellation takes one email, plus 30 days. We've designed the whole thing so the exit is painless.
+            <span class="text-[var(--color-accent)]">You leave.</span> We hand you a GitHub repo, a hosting account in your name, and the AI configuration. Your domain stays yours throughout (we never own it). Cancellation takes one email plus 30 days. The whole thing is designed so the exit is painless.
           </p>
         </div>
-        <div class="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8">
-          <p class="mb-4 text-sm font-medium uppercase tracking-wider text-[var(--color-fg-dim)]">"Do you work in my industry?"</p>
+        <div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8">
+          <p class="eyebrow mb-4">"Do you work in my industry?"</p>
           <p class="text-[var(--color-fg)]">
             <span class="text-[var(--color-accent)]">Probably yes,</span> but the better question is whether we know <em>your kind of buyer</em>. We've built for service businesses (clinics, agencies, trades), independent professionals (consultants, coaches), and indie SaaS. If it's regulated (FDA, HIPAA, finance), we'll tell you on the discovery call before you commit a cent.
           </p>
@@ -471,37 +471,36 @@ const faqs = [
 
   <!-- ============================================================
        WHY US
-       Trust + technical credibility for the buyer who can tell.
        ============================================================ -->
   <section class="border-t border-[var(--color-border)] bg-[var(--color-bg)] py-24">
-    <div class="mx-auto max-w-6xl px-6">
-      <p class="mb-3 text-sm font-medium uppercase tracking-wider text-[var(--color-accent)]">Why Buildsite</p>
-      <h2 class="mb-12 max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl">
-        Built like 2026, not like 2014.
+    <div class="mx-auto max-w-[1200px] px-6">
+      <p class="eyebrow mb-3 text-[var(--color-accent)]">Why Buildsite</p>
+      <h2 class="h-section mb-12 max-w-3xl text-3xl text-[var(--color-fg)] sm:text-4xl lg:text-5xl">
+        Built like 2026. Not like 2014.
       </h2>
 
       <div class="grid gap-x-12 gap-y-10 sm:grid-cols-2">
         <div>
           <h3 class="mb-2 font-semibold">Modern stack, end to end.</h3>
-          <p class="text-sm text-[var(--color-fg-muted)]">
-            Astro 6 for the site. Tailwind v4 for the styling. Cloudflare Pages for hosting. Anthropic Claude for the AI assistant. The same tools the best teams in the world are using right now — applied to your business.
+          <p class="text-sm leading-relaxed text-[var(--color-fg-muted)]">
+            Astro 6 for the site. Tailwind v4 for the styling. Cloudflare Workers for hosting. Anthropic Claude for the AI assistant. The same tools the best teams in the world are using — applied to your business.
           </p>
         </div>
         <div>
           <h3 class="mb-2 font-semibold">AI inside, not bolted on.</h3>
-          <p class="text-sm text-[var(--color-fg-muted)]">
-            On Pro and Studio, the AI is the product, not a widget. It uses your real content via retrieval, cites its sources, hands off to a human when it should, and stays within the boundaries you set.
+          <p class="text-sm leading-relaxed text-[var(--color-fg-muted)]">
+            On Pro and Studio, the AI is the product, not a widget. It uses your real content via retrieval, cites its sources, hands off to a human when it should, stays within the boundaries you set.
           </p>
         </div>
         <div>
           <h3 class="mb-2 font-semibold">Accessibility and SEO are not extras.</h3>
-          <p class="text-sm text-[var(--color-fg-muted)]">
+          <p class="text-sm leading-relaxed text-[var(--color-fg-muted)]">
             We ship WCAG 2.2 AA, semantic HTML, structured data, sitemap, OG cards, and a Lighthouse 100 mobile score on every site. Because the law in Europe (EAA, June 2025) now says so, and because Google's been ranking on it for years.
           </p>
         </div>
         <div>
           <h3 class="mb-2 font-semibold">Privacy by default.</h3>
-          <p class="text-sm text-[var(--color-fg-muted)]">
+          <p class="text-sm leading-relaxed text-[var(--color-fg-muted)]">
             No cookie banners. No Google Analytics. Cloudflare Web Analytics or Plausible — cookieless, GDPR-compliant, and 10× more honest about what's actually happening.
           </p>
         </div>
@@ -510,26 +509,25 @@ const faqs = [
   </section>
 
   <!-- ============================================================
-       FAQ
-       Address every "but what about..." before the contact form.
+       FAQ — <details> accordion, blue +/− glyph.
        ============================================================ -->
   <section id="faq" class="border-t border-[var(--color-border)] bg-[var(--color-surface)] py-24">
     <div class="mx-auto max-w-3xl px-6">
-      <p class="mb-3 text-sm font-medium uppercase tracking-wider text-[var(--color-accent)]">FAQ</p>
-      <h2 class="mb-12 text-3xl font-bold tracking-tight sm:text-4xl">The honest answers.</h2>
+      <p class="eyebrow mb-3 text-[var(--color-accent)]">FAQ</p>
+      <h2 class="h-section mb-12 text-3xl text-[var(--color-fg)] sm:text-4xl lg:text-5xl">The honest answers.</h2>
 
       <dl class="space-y-2">
         {
           faqs.map((item, i) => (
             <details
-              class="group rounded-xl border border-[var(--color-border)] bg-[var(--color-bg)] open:border-[var(--color-border-strong)]"
+              class="group rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg)] open:border-[var(--color-border-strong)]"
               open={i === 0}
             >
               <summary class="flex cursor-pointer items-center justify-between gap-4 px-6 py-5 text-base font-medium text-[var(--color-fg)] [&::-webkit-details-marker]:hidden">
                 <span set:html={item.q} />
-                <span class="text-[var(--color-fg-muted)] transition group-open:rotate-45">+</span>
+                <span class="mono text-[var(--color-accent)] transition group-open:rotate-45">+</span>
               </summary>
-              <p class="px-6 pb-6 text-sm text-[var(--color-fg-muted)]" set:html={item.a} />
+              <p class="px-6 pb-6 text-sm leading-relaxed text-[var(--color-fg-muted)]" set:html={item.a} />
             </details>
           ))
         }
@@ -539,17 +537,16 @@ const faqs = [
 
   <!-- ============================================================
        FINAL CTA + inquiry form
-       Primary ask: book a call. Async fallback: form.
-       Form posts to Formspree — drop in your form ID at FORMSPREE_ID.
        ============================================================ -->
   <section id="contact" class="relative border-t border-[var(--color-border)] bg-[var(--color-bg)] py-32">
+    <!-- Single accent spotlight (centered) -->
     <div class="pointer-events-none absolute inset-0 -z-10">
-      <div class="absolute left-1/2 top-1/2 h-[400px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-accent)] opacity-[0.08] blur-3xl"></div>
+      <div class="absolute left-1/2 top-1/2 h-[400px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-accent)] opacity-[0.10] blur-3xl"></div>
     </div>
 
     <div class="mx-auto max-w-3xl px-6">
       <div class="text-center">
-        <h2 class="mb-6 text-4xl font-bold tracking-tight sm:text-5xl">
+        <h2 class="display mb-6 text-4xl text-[var(--color-fg)] sm:text-5xl lg:text-6xl">
           Ready to never think about your website again?
         </h2>
         <p class="mb-10 text-lg text-[var(--color-fg-muted)]">
@@ -557,9 +554,9 @@ const faqs = [
         </p>
         <a
           href="https://cal.com/zcasee/discovery"
-          class="btn-primary inline-flex items-center justify-center rounded-md px-8 py-4 text-lg font-medium"
+          class="btn-primary inline-flex items-center justify-center rounded-[0.625rem] px-8 py-4 text-lg font-medium"
         >
-          Book a discovery call →
+          Book a discovery call <span class="mono ml-1">→</span>
         </a>
         <p class="mt-6 text-sm text-[var(--color-fg-dim)]">
           Or send a message and we'll reply within one business day.
@@ -579,7 +576,7 @@ const faqs = [
             type="text"
             required
             autocomplete="name"
-            class="w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-4 py-3 text-[var(--color-fg)] placeholder:text-[var(--color-fg-dim)] focus:border-[var(--color-accent)] focus:outline-none"
+            class="w-full rounded-[0.625rem] border border-[var(--color-border)] bg-[var(--color-bg)] px-4 py-3 text-[var(--color-fg)] placeholder:text-[var(--color-fg-dim)] focus:border-[var(--color-accent)] focus:outline-none"
             placeholder="Jane Smith"
           />
         </div>
@@ -591,7 +588,7 @@ const faqs = [
             type="email"
             required
             autocomplete="email"
-            class="w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-4 py-3 text-[var(--color-fg)] placeholder:text-[var(--color-fg-dim)] focus:border-[var(--color-accent)] focus:outline-none"
+            class="w-full rounded-[0.625rem] border border-[var(--color-border)] bg-[var(--color-bg)] px-4 py-3 text-[var(--color-fg)] placeholder:text-[var(--color-fg-dim)] focus:border-[var(--color-accent)] focus:outline-none"
             placeholder="jane@yourbusiness.com"
           />
         </div>
@@ -602,7 +599,7 @@ const faqs = [
             name="business"
             type="text"
             required
-            class="w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-4 py-3 text-[var(--color-fg)] placeholder:text-[var(--color-fg-dim)] focus:border-[var(--color-accent)] focus:outline-none"
+            class="w-full rounded-[0.625rem] border border-[var(--color-border)] bg-[var(--color-bg)] px-4 py-3 text-[var(--color-fg)] placeholder:text-[var(--color-fg-dim)] focus:border-[var(--color-accent)] focus:outline-none"
             placeholder="Smith Dental, family practice in Austin"
           />
         </div>
@@ -613,21 +610,20 @@ const faqs = [
             name="message"
             required
             rows="4"
-            class="w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-4 py-3 text-[var(--color-fg)] placeholder:text-[var(--color-fg-dim)] focus:border-[var(--color-accent)] focus:outline-none"
+            class="w-full rounded-[0.625rem] border border-[var(--color-border)] bg-[var(--color-bg)] px-4 py-3 text-[var(--color-fg)] placeholder:text-[var(--color-fg-dim)] focus:border-[var(--color-accent)] focus:outline-none"
             placeholder="A few sentences about what's not working with your current site, or what you'd like to add."
           ></textarea>
         </div>
 
-        <!-- Honeypot for bots (hidden from real users) -->
+        <!-- Honeypot -->
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
 
-        <!-- Tier preselect (optional but useful) -->
         <div>
           <label for="tier" class="mb-2 block text-sm font-medium text-[var(--color-fg)]">Tier you're considering <span class="text-[var(--color-fg-dim)]">(optional)</span></label>
           <select
             id="tier"
             name="tier"
-            class="w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-4 py-3 text-[var(--color-fg)] focus:border-[var(--color-accent)] focus:outline-none"
+            class="w-full rounded-[0.625rem] border border-[var(--color-border)] bg-[var(--color-bg)] px-4 py-3 text-[var(--color-fg)] focus:border-[var(--color-accent)] focus:outline-none"
           >
             <option value="">Not sure yet</option>
             <option value="Lite ($299/mo)">Lite — $299/mo</option>
@@ -639,13 +635,13 @@ const faqs = [
 
         <button
           type="submit"
-          class="btn-primary inline-flex w-full items-center justify-center rounded-md px-6 py-3 text-base font-medium"
+          class="btn-primary inline-flex w-full items-center justify-center rounded-[0.625rem] px-6 py-3 text-base font-medium"
         >
-          Send message →
+          Send message <span class="mono ml-1">→</span>
         </button>
 
         <p class="pt-2 text-center text-xs text-[var(--color-fg-dim)]">
-          We reply within one business day. No drip campaigns, no spam.
+          We reply within one business day. No drip campaigns. No spam.
         </p>
       </form>
     </div>
@@ -655,19 +651,19 @@ const faqs = [
        FOOTER
        ============================================================ -->
   <footer class="border-t border-[var(--color-border)] bg-[var(--color-bg)] py-12">
-    <div class="mx-auto max-w-6xl px-6">
+    <div class="mx-auto max-w-[1200px] px-6">
       <div class="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
         <div>
-          <p class="text-lg font-bold tracking-tight">
+          <p class="text-lg font-semibold tracking-tight">
             Buildsite<span class="text-[var(--color-accent)]">.</span>
           </p>
-          <p class="mt-1 text-sm text-[var(--color-fg-dim)]">
-            Productized websites + AI assistants for small businesses.
+          <p class="mono mt-2 text-xs text-[var(--color-fg-dim)]">
+            Productized websites + AI for small businesses.
           </p>
         </div>
         <div class="flex flex-col items-start gap-2 text-sm text-[var(--color-fg-muted)] sm:items-end">
           <a href="mailto:hello@buildsite.dev" class="hover:text-[var(--color-fg)]">hello@buildsite.dev</a>
-          <p class="text-xs text-[var(--color-fg-dim)]">© 2026 Buildsite. All rights reserved.</p>
+          <p class="mono text-xs text-[var(--color-fg-dim)]">© 2026 Buildsite. All rights reserved.</p>
         </div>
       </div>
     </div>
