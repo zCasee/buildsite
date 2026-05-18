@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import { ClientRouter } from "astro:transitions";
 import ToolCursor from "../components/ToolCursor.astro";
+import AIAssistant from "../components/AIAssistant.astro";
 
 interface Props {
   title?: string;
@@ -88,6 +89,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
   <body class="bg-[var(--color-bg)] text-[var(--color-fg)] antialiased">
     <ToolCursor />
     <slot />
+    <AIAssistant />
 
     {/* Theme toggle wiring — any element with data-theme-toggle clicks through here.
         Persists to localStorage; swaps the data-theme attribute on <html>. */}
