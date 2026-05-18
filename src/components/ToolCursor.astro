@@ -1,0 +1,277 @@
+---
+/**
+ * ToolCursor — custom trowel cursor + falling-brick particle trail.
+ *
+ * Renders site-wide via BaseLayout. Skips itself on touch devices and when
+ * the visitor has prefers-reduced-motion enabled — both fall back to the
+ * native cursor with zero particles.
+ *
+ * Persists across Astro view transitions via `transition:persist` so the
+ * cursor doesn't blink on navigation. The init script is idempotent.
+ */
+---
+
+<div id="tool-cursor" aria-hidden="true" transition:persist>
+  <svg
+    width="32"
+    height="32"
+    viewBox="0 0 32 32"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <!-- Wooden handle (bottom-right, angled 45°) -->
+    <rect
+      x="18"
+      y="19"
+      width="11"
+      height="5"
+      rx="1.6"
+      transform="rotate(45 23.5 21.5)"
+      fill="#8B5A2B"
+      stroke="#2a1a08"
+      stroke-width="0.8"
+    />
+    <!-- Metal ferrule -->
+    <rect
+      x="14.5"
+      y="15.5"
+      width="4"
+      height="4"
+      transform="rotate(45 16.5 17.5)"
+      fill="#3a3a48"
+      stroke="#1f1f28"
+      stroke-width="0.6"
+    />
+    <!-- Trowel blade (steel) — tip at (3,3), broad triangle -->
+    <path
+      d="M3 3 L19 11 L11 19 Z"
+      fill="#c9ccd1"
+      stroke="#1f1f28"
+      stroke-width="1"
+      stroke-linejoin="round"
+    />
+    <!-- Blade highlight -->
+    <path
+      d="M5.5 5.5 L15 10 L11 14 Z"
+      fill="#f0f2f4"
+      opacity="0.55"
+    />
+  </svg>
+</div>
+
+<div id="brick-field" aria-hidden="true" transition:persist></div>
+
+<style is:global>
+  /* Hide native cursor only when our custom cursor is actually active. */
+  html.tool-cursor-active,
+  html.tool-cursor-active * {
+    cursor: none !important;
+  }
+
+  #tool-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 32px;
+    height: 32px;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate3d(-100px, -100px, 0);
+    will-change: transform;
+    opacity: 0;
+    transition: opacity 180ms ease;
+    /* Soft drop shadow so the trowel reads on any background. */
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.45));
+  }
+
+  html.tool-cursor-active #tool-cursor.is-visible {
+    opacity: 1;
+  }
+
+  #brick-field {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 9998;
+  }
+
+  .tool-brick {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 14px;
+    height: 7px;
+    background: linear-gradient(
+      135deg,
+      #c2664a 0%,
+      #a04a2e 60%,
+      #7d3520 100%
+    );
+    box-shadow:
+      inset 0 -1px 0 rgba(0, 0, 0, 0.35),
+      inset 1px 0 0 rgba(255, 255, 255, 0.15),
+      0 1px 2px rgba(0, 0, 0, 0.4);
+    border-radius: 1px;
+    pointer-events: none;
+    will-change: transform, opacity;
+  }
+</style>
+
+<script>
+  // Idempotent — survives Astro view transitions because the script tag is
+  // re-evaluated on each `astro:page-load`. Guard with a window flag so we
+  // never register two animation loops or two mousemove listeners.
+  function initToolCursor() {
+    if ((window as any).__toolCursorReady) return;
+
+    const finePointer = window.matchMedia("(pointer: fine)").matches;
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (!finePointer || reducedMotion) return;
+
+    const cursor = document.getElementById("tool-cursor");
+    const field = document.getElementById("brick-field");
+    if (!cursor || !field) return;
+
+    (window as any).__toolCursorReady = true;
+    document.documentElement.classList.add("tool-cursor-active");
+
+    // Trowel-tip offset inside the SVG (where the visual "click point" is).
+    const TIP_X = 3;
+    const TIP_Y = 3;
+
+    type Brick = {
+      el: HTMLDivElement;
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      rot: number;
+      vrot: number;
+      life: number;
+      maxLife: number;
+    };
+
+    const bricks: Brick[] = [];
+    const GRAVITY = 0.26; // px / frame²  (frame ≈ 16ms baseline) — slower fall
+    const MAX_BRICKS = 60; // hard cap to keep things cheap
+    const SPAWN_DIST = 52; // min cursor travel between spawns — sparser trail
+    const MAX_PER_STROKE = 2; // cap how many bricks spawn in one fast stroke
+    const FADE_OUT_MS = 380;
+
+    let mx = -200;
+    let my = -200;
+    let lastSpawnX = mx;
+    let lastSpawnY = my;
+    let cursorVisible = false;
+
+    function spawnBrick(x: number, y: number) {
+      if (bricks.length >= MAX_BRICKS) return;
+      const el = document.createElement("div");
+      el.className = "tool-brick";
+      field!.appendChild(el);
+      bricks.push({
+        el,
+        x,
+        y,
+        vx: (Math.random() - 0.5) * 2.0,
+        vy: -0.3 - Math.random() * 1.1,
+        rot: Math.random() * 360,
+        vrot: (Math.random() - 0.5) * 10,
+        life: 0,
+        maxLife: 1100 + Math.random() * 400,
+      });
+    }
+
+    function setCursorVisible(v: boolean) {
+      if (v === cursorVisible) return;
+      cursorVisible = v;
+      cursor!.classList.toggle("is-visible", v);
+    }
+
+    window.addEventListener(
+      "mousemove",
+      (e) => {
+        mx = e.clientX;
+        my = e.clientY;
+        cursor!.style.transform = `translate3d(${mx - TIP_X}px, ${my - TIP_Y}px, 0)`;
+        setCursorVisible(true);
+
+        const dx = mx - lastSpawnX;
+        const dy = my - lastSpawnY;
+        const dist = Math.hypot(dx, dy);
+        if (dist > SPAWN_DIST) {
+          // Spawn 1–MAX_PER_STROKE bricks per stroke, scaled with cursor speed.
+          const count = Math.min(
+            MAX_PER_STROKE,
+            Math.max(1, Math.floor(dist / SPAWN_DIST)),
+          );
+          for (let i = 0; i < count; i++) {
+            spawnBrick(
+              mx + (Math.random() - 0.5) * 10,
+              my + 4 + (Math.random() - 0.5) * 6,
+            );
+          }
+          lastSpawnX = mx;
+          lastSpawnY = my;
+        }
+      },
+      { passive: true },
+    );
+
+    document.addEventListener("mouseleave", () => setCursorVisible(false));
+    document.addEventListener("mouseenter", () => setCursorVisible(true));
+    window.addEventListener("blur", () => setCursorVisible(false));
+
+    // Hide the trowel while text-selecting / over inputs so it doesn't
+    // interfere with cursor affordances.
+    document.addEventListener(
+      "mouseover",
+      (e) => {
+        const t = e.target as HTMLElement | null;
+        if (!t) return;
+        const interactive = t.closest(
+          "input, textarea, select, [contenteditable='true']",
+        );
+        cursor!.style.opacity = interactive ? "0.25" : "";
+      },
+      true,
+    );
+
+    let lastTime = performance.now();
+    function tick(now: number) {
+      const dt = Math.min(now - lastTime, 32);
+      lastTime = now;
+      const s = dt / 16;
+
+      for (let i = bricks.length - 1; i >= 0; i--) {
+        const b = bricks[i];
+        b.life += dt;
+        if (b.life >= b.maxLife) {
+          b.el.remove();
+          bricks.splice(i, 1);
+          continue;
+        }
+        b.vy += GRAVITY * s;
+        b.x += b.vx * s;
+        b.y += b.vy * s;
+        b.rot += b.vrot * s;
+
+        const remaining = b.maxLife - b.life;
+        const opacity = remaining < FADE_OUT_MS ? remaining / FADE_OUT_MS : 1;
+        b.el.style.transform = `translate3d(${b.x}px, ${b.y}px, 0) rotate(${b.rot}deg)`;
+        b.el.style.opacity = String(opacity);
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  // Initial load
+  initToolCursor();
+  // Astro view-transition re-entry
+  document.addEventListener("astro:page-load", initToolCursor);
+</script>

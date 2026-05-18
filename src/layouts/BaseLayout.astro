@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import { ClientRouter } from "astro:transitions";
+import ToolCursor from "../components/ToolCursor.astro";
 
 interface Props {
   title?: string;
@@ -69,6 +70,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
     />
   </head>
   <body class="bg-[var(--color-bg)] text-[var(--color-fg)] antialiased">
+    <ToolCursor />
     <slot />
   </body>
 </html>
