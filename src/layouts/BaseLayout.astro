@@ -19,8 +19,23 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
+    {/* FOUC-prevention — run BEFORE body parses so the theme is set
+        on <html> by first paint. Default dark (brand). Honor stored
+        preference, fall back to OS prefers-color-scheme. */}
+    <script is:inline>
+      (function () {
+        try {
+          var stored = localStorage.getItem("buildsite-theme");
+          var prefersLight =
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: light)").matches;
+          var theme = stored || (prefersLight ? "light" : "dark");
+          document.documentElement.setAttribute("data-theme", theme);
+        } catch (e) {}
+      })();
+    </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -73,5 +88,20 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
   <body class="bg-[var(--color-bg)] text-[var(--color-fg)] antialiased">
     <ToolCursor />
     <slot />
+
+    {/* Theme toggle wiring — any element with data-theme-toggle clicks through here.
+        Persists to localStorage; swaps the data-theme attribute on <html>. */}
+    <script is:inline>
+      document.addEventListener("click", function (e) {
+        var trigger = e.target.closest("[data-theme-toggle]");
+        if (!trigger) return;
+        var current = document.documentElement.getAttribute("data-theme");
+        var next = current === "light" ? "dark" : "light";
+        document.documentElement.setAttribute("data-theme", next);
+        try {
+          localStorage.setItem("buildsite-theme", next);
+        } catch (_) {}
+      });
+    </script>
   </body>
 </html>

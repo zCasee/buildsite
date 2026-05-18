@@ -180,7 +180,7 @@ body {
 
 /* ============================================================
    HERO GRID PATTERN
-   28px grid at 3.5% white. Layered behind the accent spotlight.
+   28px grid. White lines on dark, dark lines on light.
    Per design system: hero/marketing surfaces only.
    ============================================================ */
 .hero-grid {
@@ -193,6 +193,48 @@ body {
     black 0%,
     transparent 70%
   );
+}
+[data-theme="light"] .hero-grid {
+  background-image:
+    linear-gradient(to right, rgba(10, 10, 15, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(10, 10, 15, 0.05) 1px, transparent 1px);
+}
+
+/* ============================================================
+   LIGHT MODE OVERRIDE
+   The Buildsite design system is dark-only by spec. This is a
+   documented override added at user request for visitor preference.
+   Same accent. Inverted surface ladder + text scale.
+   ============================================================ */
+[data-theme="light"] {
+  --color-bg: #f9f9fb;
+  --color-surface: #ffffff;
+  --color-surface-2: #f3f3f5;
+  --color-surface-3: #ebebef;
+  --color-border: #e5e5ea;
+  --color-border-strong: #c8c8d0;
+
+  --color-fg: #0a0a0f;
+  --color-fg-muted: #5c5c6b;
+  --color-fg-dim: #8c8c98;
+  --color-fg-on-accent: #fafafa;
+  --color-accent-contrast: #fafafa;
+
+  /* Accent stays the same — the brand identity. */
+  /* Accent-soft gets a touch more opacity in light mode to remain visible. */
+  --color-accent-soft: rgba(59, 130, 246, 0.10);
+}
+
+/* Theme-toggle button — sun/moon glyphs swap based on data-theme. */
+.theme-glyph-dark,
+.theme-glyph-light {
+  display: none;
+}
+[data-theme="dark"] .theme-glyph-dark {
+  display: inline;
+}
+[data-theme="light"] .theme-glyph-light {
+  display: inline;
 }
 
 /* ============================================================
